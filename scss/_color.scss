@@ -1,0 +1,58 @@
+//顏色--------
+//黑色
+$black:rgb(40, 40, 40);
+//灰階01
+$gray-01: rgb(80, 80, 80);
+//灰階02
+$gray-02:rgb(120, 120, 120);
+//灰階03
+$gray-03: rgb(160, 160, 160);
+//灰階04
+$gray-04: rgb(200, 200, 200);
+//灰階05
+$gray-05: rgb(224, 224, 224);
+//灰階06
+$gray-06: rgb(235, 235, 235);
+//白色
+$white:rgb(255, 255, 255);
+//主色
+$primary-01: rgb(0, 199, 81);
+$primary-02: rgb(16, 132, 58);
+//副色
+$secondary-01: rgb(12, 69, 102);
+$secondary-02: rgb(6, 63, 70);
+//特殊色
+$special-01: rgb(255, 255, 3);
+//輔助色
+$aid-01: rgb(0, 179, 80);
+
+//淡入淡出--------
+//淡入效果
+@mixin fadein{
+    visibility: visible;
+    opacity: 1;
+}
+//淡出效果
+@mixin fadeout ($visibility:hidden, $opacity:0){
+    visibility: $visibility;
+    opacity: $opacity;
+}
+
+//其他--------
+//立體效果
+@mixin threeD($top, $middle, $down, $bottom){
+    background: linear-gradient(
+        $top 0%,
+        $middle 10%,
+        $down 90%,
+        $bottom 100%,
+    );
+    box-shadow: 0 0 10px $gray;
+}
+//漸層效果
+@mixin colors($top, $bottom) {
+    background: linear-gradient(
+        $top 0%,
+        $bottom 100%,
+    )
+}

@@ -1,0 +1,2560 @@
+//基本檔案--------
+@import '_reset.scss';
+@import '_layout.scss';
+@import '_color.scss';
+@import '_fonts.scss';
+@import '_animation.scss';
+@import '_default.scss';
+@import '_owl-carousel.scss';
+@import '_screen.scss';
+//js引用
+//js引用 - 一鍵下載隱藏、顯示
+.content-hide{
+    opacity: 0 !important;
+    visibility: hidden !important;
+    right: -48px !important;
+}
+.content-show{
+    opacity: unset;
+    visibility: visible;
+    right: unset;
+}
+//js引用 - QA展開/收合模組
+.qa-information-active{
+    .qa-information-list-title{
+        background-color: $primary-01 !important;
+        p, i{
+            color: $white !important;
+        }
+    }
+}
+//js引用 - 捲動後關閉提示字元
+.content-tips-default{
+    &:before, &:after{
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+}
+.content-tips-active{
+    &:before, &:after{
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+//共用模組--------
+//共用模組 - 圓角
+$radius-01: 16px;
+$radius-02: 8px;
+$border-circle: 1000000000px;
+//共用模組 - 陰影
+$shadow-z-01: 0 2px 8px rgba(0, 0, 0, 0.16);
+$popup-shadow: 0 4px 16px rgba(0, 0, 0, 0.48);
+//共用模組 - 品牌延伸
+$brand-circle-inner: 480px;
+$brand-circle-outer: 720px; 
+//圖層順序
+$z-b3: -999;
+$z-b2: -99;
+$z-b1: -9;
+$z-01: 9;
+$z-02: 99;
+$z-03: 999;
+$z-04: 9999;
+//好康報報商家LOGO，尺寸固定40px * 40px;
+$shop-logo-size:40px;
+//owl-carousel客製化--------
+//owl-carousel客製化 - 修正內容裁切問題
+.owl-carousel{
+    overflow: hidden;
+    position: unset;
+}
+.owl-carousel .owl-stage-outer{
+    overflow: unset;
+}
+//owl-carousel客製化 - 序列控制點
+.owl-theme .owl-dots .owl-dot span{
+    @include m-x(8px, 8px);
+    @include m-y(0, 0);
+    transition: 0.25s linear;
+    height: 12px;
+    width: 12px;
+    background-color: $white;
+    border: 1px solid $primary-01;
+}
+.owl-dots{
+    @include m-t(12px);
+}
+.owl-dots .active{
+    span{
+        width: 80px !important;
+    }
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{
+    background-color: $primary-01;
+}
+//owl-carousel客製化 - 切換按鈕
+.owl-nav{
+    @include m-t(16px);
+    @include flex-row;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: none;
+    left: none;
+    button{
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        i{
+            @include m-x(4px ,4px);
+        }
+        span{
+            @include m-x(4px, 4px);
+            @include font-title(24px);
+        }
+        span, i{
+            @include linear(0.25s);    
+            display: inline-block;
+        }
+    }
+    button:last-child{
+        @include m-r(0);
+    }
+}
+.owl-theme .owl-nav [class*=owl-]:hover{
+    background-color: unset;
+    span{
+        color: $primary-01;
+    }
+    i{
+        color: $primary-01;
+    }
+}
+//其他--------
+//其他 - 英文
+@mixin text-en($font-weight:400){
+    font-family: 'Encode Sans', sans-serif !important;
+    font-weight: $font-weight;
+}
+//其他 - 連結
+.link{
+    @include font-text(16px);
+    @include linear(0.25s);
+    white-space: nowrap;
+}
+.black-link{
+    color: $black;
+}
+.black-link:hover{
+    color: $primary-01;
+}
+.white-link{
+    color: $white;
+}
+.white-link:hover{
+    color: $special-01;
+}
+//其他 - 圖示
+.icon{
+    height: 24px;
+    width: 24px;
+    text-align: center;
+}
+//其他 - font-awesome圖示
+i{
+    font-size: 24px;
+}
+//按鈕--------
+//按鈕 - 按鈕基本輪廓
+.button{
+    @include p-x(12px, 12px);
+    @include p-y(8px, 8px);
+    @include font-text(16px);
+    @include linear(0.25s);
+    border:1px solid transparent;
+    white-space: nowrap;
+    display: inline-block;
+    border-radius: $radius-02;
+}
+//按鈕 - 框線按鈕主色
+.button-border-primary{
+    color: $primary-01;
+    border-color: $primary-01;
+}
+.button-border-primary:hover{
+    color: $white;
+    background-color: $primary-01;
+}
+//按鈕 - 填色按鈕主色\
+.button-fill-primary{
+    color: $white;
+    background-color: $primary-01;
+}
+.button-fill-primary:hover{
+    background-color: $primary-02;
+}
+//一鍵下載電腦、平板尺寸
+$download-btn-h:144px;
+$lownload-btn-w:48px;
+//js引用--------
+//js引用 - 捲動關閉
+.overflow-close{
+    overflow: hidden !important;
+}
+.overflow-close-bg{
+    overflow: hidden !important;
+    &:after{
+        @include fixed(0, 0, 0, 0, auto);
+        height: 100%;
+        width: 100%;
+        content: '';
+        background-color: rgba($black, 0.88);
+        z-index: $z-02;
+    }
+}
+//網頁內容--------
+//內容隱藏
+.none{
+    display: none !important;
+}
+//網頁內容 - 文本
+::selection{
+    background-color: $gray-04;
+    color: $black;
+}
+body{
+    overflow-x: hidden;
+    &:after{
+        @include linear(0.25s);
+        content: '';
+    }
+}
+//網頁內容 - 內、外間距
+.content-mx{
+    @include m-x(96px, 96px);
+}
+.content-my{
+    @include m-y(120px, 120px);
+}
+.content-px{
+    @include p-x(96px, 96px);
+}
+//網頁內容 - 區塊標題內間距
+.section-content{
+    @include m-b(48px);
+}
+//網頁內容 - 區塊標題
+.section-content-title{
+    @include font-title(48px);
+}
+//網頁內容 - 選單
+//網頁內容 - 選單 - logo
+$logo-h: 40px;
+$logo-w: 176px;
+.menu{
+    @include fixed(0, 0, none, 0, auto);
+    background-color: rgba($white, 0.92);
+    box-shadow: $shadow-z-01;
+    backdrop-filter: blur(4px);
+    z-index: $z-03;
+    .menu-list{
+        @include flex-row;
+        .menu-list-logo{
+            @include m-r(auto);
+            @include m-y(auto, auto);
+            li{
+                h1{
+                    height: $logo-h;
+                    width: $logo-w;
+                    text-indent: -100%;
+                    color: transparent;
+                    position: relative;
+                    a{
+                        @include absolute(0, 0, 0, 0, auto);
+                        height: $logo-h;
+                        width: $logo-w;
+                        background-image: url(../images/logo.svg);
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                        display: block;
+                    }
+                }
+            }
+        }
+        .menu-list-l{
+            @include m-l(auto);
+            @include flex-row;
+            align-items: center;
+            .menu-list-l-link{
+                .menu-list-all-link-btn{
+                    @include font-text(16px);
+                    a{
+                        display: block;
+                    }
+                }
+            }
+            .menu-list-l-link:nth-child(5){
+                .menu-list-all-link-btn{
+                    @include text-en(500);
+                }
+            }
+            .menu-list-l-line{
+                height: 100%;
+                width: 1px;
+                background-color: $gray-05;
+            }
+            .menu-list-l-link, .menu-list-l-line{
+                @include m-x(12px, 12px);
+            }
+            .menu-list-l-link:last-child{
+                @include m-r(0);
+            }
+        }
+        .menu-list-m{
+            display: none;
+        }
+        .menu-list-logo, .menu-list-l, .menu-list-m{
+            @include p-y(12px, 12px);
+        }
+    }
+}
+//網頁內容 - 主視覺
+.branding-kv{
+    div{
+        background-color: $gray-06;
+    }
+    .branding-kv-m{
+        display: none;
+    }
+}
+//網頁內容 - 最新消息
+.news{
+    position: relative;
+    .news-information{
+        .news-information-banner{
+            position: unset;
+            .news-information-banner-item{
+                @include p-x(4px, 4px);
+                @include p-y(4px, 4px);
+                display: block;
+                img{
+                    @include m-b(12px);
+                    max-width: 100%;
+                    border-radius: $radius-02;
+                    box-shadow: $shadow-z-01;
+                }
+                p{
+                    @include linear(0.25s);
+                    @include m-t(12px);
+                    @include font-text(16px);
+                }
+                &:hover p{
+                    color: $primary-01;
+                }
+            }
+        }
+        &:after{
+            @include absolute(-24px, none, none, 0, none);
+            @include font-title(160px);
+            @include text-en(bold);
+            content: 'Parking';
+            color: $gray-06;
+            white-space: nowrap;
+            z-index: $z-b1;
+        }
+    }
+}
+//網頁內容 - 熱門推薦
+//客製化定義輪播切換按鈕向右間距
+$owl-nav-right: 96px;
+//熱門推薦動畫設定
+.hots-animation-default{
+    &:after{
+        @include translate(0, 0)
+    }
+}
+.hots-animation-active{
+    &:after{
+        @include translate(100%, 0)
+    }
+}
+.hots{
+    position: relative;
+    .hots-content{
+        position: relative;
+    }
+    .hots-information{
+        .hots-information-banner{
+            position: unset;
+            .hots-information-banner-item{
+                @include p-x(4px, 4px);
+                @include p-y(4px, 4px);
+                display: block;
+                img{
+                    @include m-b(12px);
+                    max-width: 100%;
+                    border-radius: $radius-02;
+                    box-shadow: $shadow-z-01;
+                }
+                p{
+                    @include linear(0.25s);
+                    @include m-t(12px);
+                    @include font-text(16px);
+                }
+                &:hover p{
+                    color: $primary-01;
+                }        
+            }
+            .owl-nav{
+                margin-right: $owl-nav-right;
+            }
+        }
+    }
+    &:after{
+        @include absolute(0, none, none, -50%, none);
+        @include ease-out(1s);
+        height: 100%;
+        width: 50%;
+        content: '';
+        border-top-right-radius: $border-circle;
+        border-bottom-right-radius: $border-circle;
+        background-color: $gray-06;
+        z-index: $z-b1;
+    }
+}
+//網頁內容 - 好康報報
+//共用模組 - 品牌延伸
+$brand-circle-h: 24px;
+$brand-circle-w: 88px; 
+//圓圈自轉動畫
+@keyframes round-animation{
+    0%{@include rotate(0deg)};
+    100%{@include rotate(360deg)}
+}
+//品牌延伸動畫
+.brand-circle-animation-default{
+    @include translate(0, 0);
+    opacity: 0;
+}
+.brand-circle-animation-active{
+    @include translate(48px, 0);
+    opacity: 1;
+}
+.shops{
+    position: relative;
+    overflow: hidden;
+    .shops-content{
+        @include flex-row;
+        align-items: center;
+        div{
+            @include m-l(24px);
+            position: relative;
+            span{
+                @include linear(0.5s);
+                @include absolute(0, none, 0, 0, auto);
+                height: $brand-circle-h;
+                width: $brand-circle-w;
+                border-radius: $border-circle;
+                display: inline-block;
+            }
+            span:first-child{
+                left: 0 - 48px;
+                background-color: $primary-01;
+                z-index: $z-01;
+                transition-delay: 0s;
+            }
+            span:nth-child(2){
+                left: 40px - 48px;
+                background-color: $primary-02; 
+                z-index: $z-b1;   
+                transition-delay: 0.25s;
+            }
+            span:last-child{
+                left: 64px - 48px;
+                background-color: $secondary-01;
+                z-index: $z-b2;
+                transition-delay: 0.5s;
+            }
+        }
+    }
+    .shops-information{
+        .shops-information-list{
+            @include p-y(16px, 16px);
+            .shops-information-list-wrap{
+                width: 100%;
+                border-radius: $radius-02;
+                overflow: hidden;
+                background-color: $white;
+                box-shadow: $shadow-z-01;
+                .shops-information-list-wrap-data{
+                    @include m-x(24px, 24px);
+                    @include p-y(16px, 16px);
+                    @include flex-row;
+                    align-items: center;
+                    background-color: $white;
+                    border-bottom: 1px solid $gray-05;
+                    div{
+                        @include m-r(12px); 
+                        height: $shop-logo-size;
+                        width: $shop-logo-size;
+                        position: relative;
+                        &:before, &:after{
+                            @include absolute(0, 0, 0, 0, auto);
+                            height: $shop-logo-size;
+                            width: $shop-logo-size;
+                            content: '';
+                            background-size: contain;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                        }
+                    }
+                    p{
+                        @include m-x(12px, auto);
+                        @include font-title(24px);
+                        width: auto;
+                        color: $black;
+                    }
+                    a{
+                        @include m-l(auto);
+                        display: inline-block;
+                    }
+                }
+                .shops-information-list-wrap-event{
+                    @include p-y(16px, 8px);
+                    @include font-text(24px);
+                    h3{
+                        color: $gray-01;
+                    }
+                }
+                .shops-information-list-wrap-other{
+                    @include p-y(8px, 16px);
+                    .shops-information-list-wrap-other-time{
+                        @include p-y(0px, 2px);
+                    }
+                    .shops-information-list-wrap-other-information{
+                        @include p-y(2px, 0);
+                    }
+                    .shops-information-list-wrap-other-time, .shops-information-list-wrap-other-information{
+                        @include flex-row;
+                        span{
+                            color: $gray-03;
+                            white-space: nowrap;
+                        }
+                        > p{
+                            @include font-text(16px);
+                            @include text-en(500);
+                        }
+                        article{
+                            ul{
+                                @include m-l(32px);
+                                list-style: decimal-leading-zero;
+                            }
+                        }
+                        p, article, ul li{
+                            color: $gray-01;
+                        }
+                        span, article, ul{
+                            @include font-text(16px);
+                        }
+                    }
+                }
+                .shops-information-list-wrap-more{
+                    display: none;
+                }
+                .shops-information-list-wrap-event, .shops-information-list-wrap-other{
+                    @include m-x(24px, 24px);
+                }
+            }
+        }
+        .shops-information-list:first-child{
+            @include p-t(0);
+            .shops-information-list-wrap{
+                .shops-information-list-wrap-data{
+                    div{
+                        &:after{
+                            background-image: url(../images/store-logo-01.png);
+                        }
+                    }
+                }
+            }
+        }
+        .shops-information-list:nth-child(2){
+            .shops-information-list-wrap{
+                .shops-information-list-wrap-data{
+                    div{
+                        &:after{
+                            background-image: url(../images/store-logo-02.png);
+                        }
+                    }
+                }
+            }
+        }
+        .shops-information-list:nth-child(3){
+            .shops-information-list-wrap{
+                .shops-information-list-wrap-data{
+                    div{
+                        &:after{
+                            background-image: url(../images/store-logo-03.png);
+                        }
+                    }
+                }
+            }
+        }
+        .shops-information-list:nth-child(4){
+            .shops-information-list-wrap{
+                .shops-information-list-wrap-data{
+                    div{
+                        &:after{
+                            background-image: url(../images/store-logo-default.svg);
+                        }
+                    }
+                }
+            }
+        }
+        .shops-information-list:nth-child(5){
+            .shops-information-list-wrap{
+                .shops-information-list-wrap-data{
+                    div{
+                        &:after{
+                            background-image: url(../images/store-logo-05.png);
+                        }
+                    }
+                }
+            }
+        }
+        .shops-information-list:nth-child(6){
+            .shops-information-list-wrap{
+                .shops-information-list-wrap-data{
+                    div{
+                        &:after{
+                            background-image: url(../images/store-logo-06.png);
+                        }
+                    }
+                }
+            }
+        }
+        .shops-information-list:nth-child(7){
+            .shops-information-list-wrap{
+                .shops-information-list-wrap-data{
+                    div{
+                        &:after{
+                            background-image: url(../images/store-logo-07.png);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .section-circle{
+        @include absolute(0, $brand-circle-outer/-2, none, none, auto);
+        height: $brand-circle-outer;
+        width: $brand-circle-outer;
+        background:linear-gradient(0deg, $white 20%, $primary-01);
+        border-radius: $border-circle;
+        z-index: $z-b1;
+        animation: round-animation 2s ease-in-out infinite;
+        &:after{
+            @include absolute(0, 0, 0, 0, auto);
+            height: $brand-circle-inner;
+            width: $brand-circle-inner;
+            content: '';
+            background-color: $white;
+            border-radius: $border-circle;
+        }
+    }
+}
+//網頁內容 - 服務介紹
+//網頁內容 - 服務介紹標題圓形尺寸
+$title-cirlce-size: 240px;
+//熱門推薦動畫設定
+.service-animation-default{
+    &:after{
+        @include translate(0, 0)
+    }
+}
+.service-animation-active{
+    &:after{
+        @include translate(-100%, 0)
+    }
+}
+.service{
+    position: relative;
+    overflow: hidden;
+    .service-information{
+        @include flex-row;
+        flex-wrap: wrap;
+        .service-information-list{
+            @include m-x(12px, 12px);
+            @include m-b(32px);
+            width: calc(33.3% - 24px);
+            border-radius: $radius-02;
+            box-shadow: $shadow-z-01;
+            background-color: $white;
+            overflow: hidden;
+            position: relative;
+            .service-information-list-wrap{
+                    .service-information-list-wrap-title{
+                        @include flex-row;
+                        align-items: center;
+                        position: relative;
+                        overflow: hidden;
+                        h5{
+                            @include m-r(auto);
+                            @include font-title(32px);
+                            color: $white;
+                            z-index: $z-01;
+                        }
+                        a{
+                            @include m-l(auto);
+                            position: relative;
+                            z-index: $z-01;
+                        }
+                        &:after{
+                            @include absolute(0, $title-cirlce-size*-0.5, 0, none, auto);
+                            content: '';
+                            height: $title-cirlce-size;
+                            width: $title-cirlce-size;
+                            border-radius: $border-circle;
+                            transform: skewX(-6deg);
+                        }
+                    }
+                    .service-information-list-wrap-introduce{
+                        ul{
+                            @include m-l(24px);
+                            li{
+                                list-style-type: disc;
+                            }
+                        }
+                        article, ul li{
+                            @include font-text(16px);
+                            color: $gray-02;
+                            position: relative;
+                            z-index: $z-01;
+                        }
+                        img{
+                            @include absolute(none, 16px, 16px, none, none);
+                            height: 32px;
+                            width: auto;
+                        }
+                    }
+                    .service-information-list-wrap-title, .service-information-list-wrap-introduce{
+                        @include p-x(24px, 24px);
+                        @include p-y(16px, 16px);
+                    }
+            }
+        }
+        .service-information-list:nth-child(even){
+            .service-information-list-wrap{ 
+                .service-information-list-wrap-title{
+                    background-color: $primary-01;
+                    &:after{
+                        background-color: $secondary-01;
+                    }
+                }
+            }
+        }
+        .service-information-list:nth-child(odd){
+            .service-information-list-wrap{ 
+                .service-information-list-wrap-title{
+                    background-color: $secondary-01;
+                    &:after{
+                        background-color: $primary-01;
+                    }
+                }
+            }
+        }
+        .service-information-list:first-child, .service-information-list:nth-child(4){
+            @include m-x(0, 24px);
+        }
+        .service-information-list:nth-child(3), .service-information-list:last-child{
+            @include m-x(24px, 0);
+        }
+    }
+    &:after{
+        @include absolute(0, -50%, 0, none, none);
+        @include ease-out(1s);
+        height: 100%;
+        width: 50%;
+        content: '';
+        border-top-left-radius: $border-circle;
+        border-bottom-left-radius: $border-circle;
+        background-color: $gray-06;
+        z-index: $z-b1;
+    }
+}
+//網頁內容 - QA
+.qa{
+    .section-content{
+        @include flex-row;
+        align-items: center;
+        p{
+            @include text-en(600);
+            width: 100%;
+        }    
+    }
+    .qa-information{
+        .qa-information-list{
+            @include m-y(24px, 24px);
+            border-radius: $radius-02;
+            box-shadow: $shadow-z-01;
+            overflow: hidden;
+            .qa-information-list-title{
+                @include p-x(24px, 24px);
+                @include p-y(24px, 24px);
+                @include flex-row;
+                @include font-title(24px);
+                @include linear(0.25s);
+                align-items: center;
+                cursor: pointer;
+                p{
+                    @include m-r(8px);
+                    width: calc(100% - 8px);
+                    color: $black;
+                }
+                i{
+                    @include m-l(8px);
+                }
+                p, i{
+                    @include linear(0.25s);
+                    color: $black;
+                }
+            }
+            .qa-information-list-title:hover{
+                background-color: $secondary-01;
+                p, i{
+                    color: $primary-01;
+                }
+            }
+            .qa-information-list-content{
+                display: none;
+                p{
+                    @include font-text(16px);
+                    color: $gray-02;
+                }
+                ul{
+                    @include m-y(16px, 0);
+                    li{
+                        color: $gray-02;
+                        @include p-y(4px, 4px);
+                        @include flex-row;
+                        align-items: center;
+                        img{
+                            @include m-r(4px);
+                            width: 28px;
+                        }
+                        span{
+                            @include m-l(4px);
+                            color: $gray-02;
+                        }
+                    }
+                    li:first-child{
+                        @include p-t(0);
+                    }
+                    li:last-child{
+                        @include p-b(0);
+                    }
+                }
+            }
+            .qa-information-list-title, .qa-information-list-content{
+                @include p-x(24px, 24px);
+                @include p-y(24px, 24px);                    
+            }
+        }
+    }
+    .qa-information:nth-child(even){
+        .qa-information-list{
+            .qa-information-list-title{
+                background-color: $white;
+            }
+        }
+    }
+    .qa-information:nth-child(odd){
+        .qa-information-list{
+            .qa-information-list-title{
+                background-color: $gray-06;
+            }
+        }
+    }
+}
+//網頁內容 - 形象牆
+//突出幾何形尺寸
+$brand-others-size-h:136px;
+$brand-others-size-w: 50%;
+//形象牆裝置尺寸
+$device-size-h: 760px;
+$device-size-w: 560px;
+//裝置內圓型尺寸
+$device-circle-size:1500px;
+//形象牆裝置圓角
+$device-radius: 24px;
+//形象牆圓形尺寸
+$brand-bg-circle: 800px;
+//形象牆裝置位移動畫
+@keyframes brand-device-animation-default{
+    0%{@include translate(0, 0)}
+    100%{@include translate(0, 100%)}
+}
+.brand-device-animation-default{
+    animation: brand-device-animation-default 0.75s ease-in-out forwards;
+}
+@keyframes brand-device-animation-active{
+    0%{@include translate(0, 100%)}
+    100%{@include translate(0, 0)}
+}
+.brand-device-animation-active{
+    animation: brand-device-animation-active 0.75s ease-in-out forwards;
+}
+//形象牆背景圓形動畫
+@keyframes brand-circle-fill-animation-default{
+    0%{@include scale(1)}
+    100%{@include scale(0)}
+}
+.brand-circle-fill-animation-default{
+    animation: brand-circle-fill-animation-default 0.75s ease-in-out alternate forwards;
+}
+@keyframes brand-circle-fill-animation-active{
+    0%{@include scale(0)}
+    100%{@include scale(1)}
+}
+.brand-circle-fill-animation-active{
+    animation: brand-circle-fill-animation-active 0.75s ease-in-out alternate forwards;
+}
+//形象牆背景圓形向外第一層線條動畫
+@keyframes brand-circle-border-01-animation-active{
+    0%{@include scale(1); opacity: 1;}
+    100%{@include scale(1.1); opacity: 0;}
+}
+.brand-circle-border-01-animation-active{
+    animation: brand-circle-border-01-animation-active 1s 0.75s ease-in-out infinite forwards;
+}
+//形象牆背景圓形向外第二層線條動畫
+@keyframes brand-circle-border-02-animation-active{
+    0%{@include scale(1); opacity: 0.8;}
+    100%{@include scale(1.2); opacity: 0;}
+}
+.brand-circle-border-02-animation-active{
+    animation: brand-circle-border-02-animation-active 1s 0.75s ease-in-out infinite forwards;
+}
+//形象牆背景圓形向外第三層線條動畫
+@keyframes brand-circle-border-03-animation-active{
+    0%{@include scale(1); opacity: 0.6;}
+    100%{@include scale(1.25); opacity: 0;}
+}
+.brand-circle-border-03-animation-active{
+    animation: brand-circle-border-03-animation-active 1s 0.75s ease-in-out infinite forwards;
+}
+//形象牆背景圓形向外第三層線條動畫
+@keyframes brand-circle-border-03-animation-active{
+    0%{@include scale(1); opacity: 0.6;}
+    100%{@include scale(1.25); opacity: 0;}
+}
+.brand-circle-border-03-animation-active{
+    animation: brand-circle-border-03-animation-active 1s 0.75s ease-in-out infinite forwards;
+}
+//形象牆背景圓形向外第四層線條動畫
+@keyframes brand-circle-border-04-animation-active{
+    0%{@include scale(1); opacity: 0.8;}
+    100%{@include scale(1.275); opacity: 0;}
+}
+.brand-circle-border-04-animation-active{
+    animation: brand-circle-border-04-animation-active 1s 0.75s ease-in-out infinite forwards;
+}
+//形象牆背景emoji動畫
+.brand-emoji-animation-default{
+    animation: none;
+}
+@keyframes brand-emoji-animation-active{
+    11%{background-image: url(../images/brand-device-emoji-02.svg)}
+    22%{background-image: url(../images/brand-device-emoji-03.svg)}
+    33%{background-image: url(../images/brand-device-emoji-04.svg)}
+    44%{background-image: url(../images/brand-device-emoji-05.svg)}
+    55%{background-image: url(../images/brand-device-emoji-06.svg)}
+    66%{background-image: url(../images/brand-device-emoji-07.svg)}
+    75%{background-image: url(../images/brand-device-emoji-08.svg)}
+    80%{background-image: url(../images/brand-device-emoji-01.svg)}
+    85%{background-image: none}
+    90%{background-image: url(../images/brand-device-emoji-01.svg)}
+    95%{background-image: none}
+    100%{background-image: url(../images/brand-device-emoji-01.svg)}
+}
+.brand-emoji-animation-active{
+    animation: brand-emoji-animation-active 2s 0.75s linear forwards;
+}
+//形象牆背景標準字位移動畫
+.brand-title-animation-default{
+    animation: none;
+}
+@keyframes brand-title-animation-active{
+    0%{@include translate(0, -16px);opacity: 0}
+    100%{@include translate(0, 0);opacity: 1}
+}
+.brand-title-animation-active{
+    animation: brand-title-animation-active 0.5s 3s ease-out forwards;
+}
+//形象牆
+.brand{
+    position: relative;
+    .brand-wrap{
+        @include m-t($brand-others-size-h*1.5);
+        @include p-t(160px);
+        overflow: hidden;
+        .brand-wrap-device{
+            @include m-x(auto, auto);
+            @include flex-row;
+            height: $device-size-h;
+            width: $device-size-w;
+            background-color: $gray-06;
+            box-shadow: 0 0 16px rgba($black, 0.40);
+            border-top-left-radius: $device-radius;
+            border-top-right-radius: $device-radius;
+            .brand-wrap-device-inner{
+                @include flex-row;
+                @include m-t(auto);
+                @include m-x(auto, auto);
+                height: $device-size-h*0.98;
+                width: $device-size-w*0.95;
+                background-color: $primary-01;
+                border-top-left-radius: $device-radius;
+                border-top-right-radius: $device-radius;
+                overflow: hidden;
+                position: relative;
+                .brand-wrap-device-inner-vision{
+                    @include flex-col;
+                    height: 100%;
+                    width: 100%;
+                    z-index: $z-02;
+                    position: relative;
+                    div{
+                        @include absolute(0, 0, 0, 0, auto);
+                        height: 100%;
+                        width: 100%;
+                        background-size: 160px;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                    }
+                    div:first-child{
+                        background-image: url(../images/brand-device-emoji-01.svg);
+                    }
+                    div:last-child{
+                        opacity: 0;
+                        background-image: url(../images/brand-device-title.svg);
+                    }
+                }
+                &:before{
+                    @include absolute(0, 0, 0, 0, auto);
+                    height: 100%;
+                    width: 100%;
+                    content: '';
+                    border-top-left-radius: 24px;
+                    border-top-right-radius: 24px;
+                    box-shadow: inset 0 0 8px rgba($black, 0.24);
+                    z-index: $z-01;
+                }
+                &:after{
+                    @include absolute(none, $device-circle-size*-0.5, 80px, $device-circle-size*-0.5, auto);
+                    height: $device-circle-size;
+                    width: $device-circle-size;
+                    content: '';
+                    border-radius: $border-circle;
+                    background-color: $white;
+                }
+            }
+        }
+        .brand-wrap-circle{
+            @include absolute(0, 0, 0, 0, auto);
+            height: 100%;
+            width: 100%;
+            background-color: $aid-01;
+            z-index: $z-b1;
+            overflow: hidden;
+            .brand-wrap-circle-fill{
+                @include scale(0);
+                @include absolute(25%, 0, 0, 0, auto);
+                height: $brand-bg-circle;
+                width: $brand-bg-circle;
+                border-radius: $border-circle;
+                background-color: $primary-02;
+            }
+            .brand-wrap-circle-border{
+                @include absolute(25%, 0, 0, 0, auto);
+                height: $brand-bg-circle;
+                width: $brand-bg-circle;
+                border-radius: $border-circle;
+                border: 2px solid $primary-02;
+                opacity: 0;
+            }
+        }
+        &:after{
+            @include absolute($brand-others-size-h/-2, 0, none, 0, auto);
+            content: '';
+            height: $brand-others-size-h;
+            width: calc(100% - 96*2px);
+            background-color: $aid-01;
+            border-radius: $border-circle;
+            z-index: $z-b2;
+        }
+    }
+}
+//網頁內容 - 下載
+//網頁內容 - 下載 - 返回頂端按鈕尺寸
+$to-top-size:64px;
+.download{
+    @include p-y(24px ,24px);
+    position: relative;
+    z-index: $z-01;
+    .download-information{
+        @include flex-row;
+        align-items: center;
+        h2{
+            @include m-r(12px);
+            @include font-title(48px);
+            color: $primary-01;
+        }
+        .download-information-line{
+            @include m-x(12px, 12px);
+            width: 1px;
+            background-color: $gray-05;
+            align-self: stretch;
+        }
+        .download-information-link{
+            @include flex-row;
+            a{
+                @include m-x(12px, 12px);
+                @include flex-row;
+                @include text-en();
+                i{
+                    @include m-x(auto, 4px);                    
+                }
+                span{
+                    @include text-en();
+                    @include m-x(4px, auto)
+                }
+                i, span{
+                    color: $white;
+                }
+            }
+        }
+    }
+    .to-top{
+        @include absolute($to-top-size/-2, 0, none, none, none);
+        @include flex-row;
+        height: $to-top-size;
+        width: $to-top-size;
+        i{
+            @include m-x(auto, auto);
+            @include m-y(auto, auto);
+            color: $primary-01;
+        }
+        &:after{
+            @include absolute(8px, 0, 0, 0, auto);
+            @include rotate(45deg);
+            height: $to-top-size;
+            width: $to-top-size;
+            content:'';
+            border-radius: $radius-02;
+            background-color: $white;
+            z-index: $z-b1;
+        }
+    }
+}
+//頁尾
+footer{
+    @include p-y(48px, 48px);
+    @include flex-row;
+    align-items: center;
+    background-color: $secondary-02;
+    .footer-logo{
+        @include m-x(0, 24px);
+    }
+    .footer-information{
+        @include m-x(24px, auto);
+        > div{
+            @include flex-row;
+            align-items: center;
+            > div{
+                @include flex-row;
+                align-items: center;
+                a{
+                    @include m-x(4px, 4px);
+                }
+                a:first-child{
+                    @include m-l(0);
+                }
+            }
+        }
+    }
+    .footer-copyright{
+        @include m-x(auto, 0);
+        align-self: flex-end;
+        div{
+            p{
+                text-align: right;
+            }
+        }
+    }
+    .footer-information > div, .footer-copyright > div{
+        @include p-y(8px, 8px);
+        p{
+            @include font-text(16px);
+        }
+        p, div > a > i{
+            color: $white;
+        }
+    }
+}
+//top-按鈕
+.screen-to-top{
+    display: none;
+}
+//網頁內容 - 一鍵下載按鈕
+.download-l{
+    @include linear(0.25s);
+    @include fixed(0, 0, 0, none, auto);
+    height: $download-btn-h;
+    width: $lownload-btn-w;
+    display: inline-block;
+    .download-btn{
+        @include p-x(12px, 12px);
+        @include p-y(12px, 12px);
+        height: $download-btn-h;
+        width: $lownload-btn-w;
+        background-color: $black;
+        border-top-left-radius: $radius-02;
+        border-bottom-left-radius: $radius-02;
+        box-shadow: $shadow-z-01;
+        position: relative;
+        display: block;
+        span{
+            @include linear(0.25s);
+            display: inline-block;
+        }
+        span:first-child{
+            @include m-b(2px);
+            height: 21px;
+            width: 24px;
+            position: relative;
+            &:before, &:after{
+                @include absolute(0, 0, 0, 0, auto);
+                @include linear(0.25s);
+                height: 100%;
+                width: 100%;
+                content: '';
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+            &:before{
+                @include fadein();
+                background-image: url(../images/download-icon-white.svg);
+            }
+            &:after{
+                @include fadeout();
+                background-image: url(../images/download-icon-primary.svg);
+            }
+        }
+        span:last-child{
+            @include m-t(2px);
+            @include font-text(16px);
+            color: $white;
+            text-align: center;
+            display: inline-block;
+        }
+    }
+    &:hover{
+        span:first-child{
+            &:before{
+                @include fadeout();
+            }
+            &:after{
+                @include fadein();
+            }
+        }
+        span:last-child{
+            color: $primary-01;
+        }
+    }
+}
+//網頁內容 - 一鍵下載內容
+.more{
+    display: none;
+    position: relative;
+    z-index: $z-04;
+    .more-popup{
+        @include fixed(0, 0, 0, 0, auto);
+        @include flex-row;
+        height: 100%;
+        width: 100%;
+        background-color: rgba($black, 0.64);
+        overflow: auto;
+        .more-popup-wrap{
+            @include m-x(auto, auto);
+            @include m-y(auto, auto);
+            @include p-x(24px, 24px);
+            @include p-y(24px, 24px);
+            .more-popup-wrap-content{
+                border-radius: $radius-01;
+                box-shadow: $popup-shadow;
+                overflow: hidden;
+                .more-popup-wrap-content-title{
+                    @include flex-row;
+                    align-items: center;
+                    background-color: $black;
+                    p{
+                        @include m-x(0, auto);
+                        @include font-title(24px);
+                    }
+                    i{
+                        @include m-x(auto, 0);
+                        cursor: pointer;
+                    }
+                    p, i{
+                        color: $white;
+                    }
+                }
+                .more-popup-wrap-content-information{
+                    background-color: $white;
+                    .more-popup-wrap-content-information-img{
+                        @include m-b(16px);
+                        text-align: center;
+                        img{
+                            width: 200px;
+                        }
+                    }
+                    .more-popup-wrap-content-information-text{
+                        @include m-y(16px, 16px);
+                        @include p-b(16px);
+                        border-bottom: 1px solid $gray-05;
+                        p{
+                            @include font-text(24px);
+                        }
+                    }
+                    .more-popup-wrap-content-information-link{
+                        @include m-y(16px, 0);
+                        @include flex-col;
+                        a{
+                            @include m-y(4px, 4px);
+                            @include flex-row;
+                            width: 100%;
+                            i{
+                                @include m-x(auto, 4px);
+                            }
+                            span{
+                                @include m-x(4px, auto);
+                                @include text-en();
+                            }
+                            i, span{
+                                color: $white;
+                            }
+                        }
+                        a:first-child{
+                            @include m-t(0);
+                        }
+                        a:last-child{
+                            @include m-b(0);
+                        }
+                    }
+                }
+                .more-popup-wrap-content-title, .more-popup-wrap-content-information{
+                    @include p-x(24px, 24px);
+                    @include p-y(24px, 24px);
+                }
+            }
+        }
+    }
+}
+//網頁內容 - 新裝上陣
+//LOGO外圍方形尺寸
+$logotypeSize: 488px;
+//概念圖形尺寸
+$conceptHeightSize: 88px;
+$conceptWidthSize: 148px;
+.branding{
+    display: none;
+    position: relative;
+    z-index: $z-04;
+    .branding-popup{
+        @include fixed(0, 0, 0, 0, auto);
+        @include flex-row;
+        height: 100%;
+        width: 100%;
+        background-color: rgba($black, 0.64);
+        overflow: auto;
+        .branding-popup-wrap{
+            @include m-x(auto, auto);
+            @include m-y(auto, auto);
+            @include p-x(24px, 24px);
+            @include p-y(24px, 24px);
+            .branding-popup-wrap-content{
+                border-radius: $radius-01;
+                box-shadow: $popup-shadow;
+                overflow: hidden;
+                .branding-popup-wrap-content-title{
+                    @include p-x(24px, 24px);
+                    @include p-y(24px, 24px);
+                    @include flex-row;
+                    align-items: center;
+                    background-color: $black;
+                    p{
+                        @include m-x(0, auto);
+                        @include font-title(24px);
+                    }
+                    i{
+                        @include m-x(auto, 0);
+                        cursor: pointer;
+                    }
+                    p, i{
+                        color: $white;
+                    }
+                }
+                .branding-popup-wrap-content-information{
+                    @include flex-row;
+                    background-color: $white;
+                    .branding-popup-wrap-content-information-logotype{
+                        @include p-x(0, 24px);
+                        width: 50%;
+                        border-right: 1px solid $gray-06;
+                        div{
+                            @include m-b(16px);
+                            height: $logotypeSize;
+                            width: $logotypeSize;
+                            background-color: $gray-06;
+                            border-radius: $radius-02;
+                            background-image: url(../images/brand-logo-01.svg);
+                            background-size: 160px;
+                            background-repeat: no-repeat;
+                            background-position: center center;
+                        } 
+                        p{
+                            @include m-t(16px);
+                            @include font-title(32px);
+                            text-align: center;
+                            color: $primary-01;
+                        } 
+                    }
+                    .branding-popup-wrap-content-information-introduce{
+                        @include p-x(24px, 0);
+                        width: 50%;
+                        .branding-popup-wrap-content-information-introduce-concept{
+                            @include p-b(12px);
+                            @include flex-row;
+                            border-bottom: 1px solid $gray-06;
+                            .branding-popup-wrap-content-information-introduce-concept-img{
+                                @include m-x(12px, 12px);
+                                div:first-child{
+                                    @include m-b(8px);
+                                    height: $conceptHeightSize;
+                                    width: $conceptWidthSize;
+                                    background-color: $gray-06;
+                                    border-radius: $radius-02;
+                                    background-repeat: no-repeat;
+                                    background-size: 40px;
+                                    background-position: center center;
+                                }
+                                div:last-child{
+                                    @include m-t(8px);
+                                    p:first-child{
+                                        @include m-y(8px, 0);
+                                        @include text-en();
+                                        @include font-title(16px);
+                                    }
+                                    p:last-child{
+                                        @include m-t(0);
+                                        @include font-text(16px);
+                                        color: $gray-02;
+                                    }
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-concept-img:first-child{
+                                @include m-x(0, 8px);
+                            }
+                            .branding-popup-wrap-content-information-introduce-concept-img:last-child{
+                                @include m-x(8px, 0);
+                            }
+                            .branding-popup-wrap-content-information-introduce-concept-img:first-child{
+                                div:first-child{
+                                    background-image: url(../images/concept-img-01.svg)
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-concept-img:nth-child(2){
+                                div:first-child{
+                                    background-image: url(../images/concept-img-02.svg)
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-concept-img:last-child{
+                                div:first-child{
+                                    background-image: url(../images/concept-img-03.svg)
+                                }
+                            }
+                        }
+                        .branding-popup-wrap-content-information-introduce-others{
+                            @include p-t(12px);
+                            .branding-popup-wrap-content-information-introduce-others-img{
+                                @include m-y(16px, 16px);
+                                @include flex-row;
+                                align-items: center;
+                                > div:first-child{
+                                    @include m-r(8px);
+                                    height: $conceptHeightSize;
+                                    width: $conceptWidthSize;
+                                    background-color: $gray-06;
+                                    border-radius: $radius-02;
+                                    background-repeat: no-repeat;
+                                    background-size: 40px;
+                                    background-position: center center;
+                                }
+                                > div:last-child{
+                                    @include m-l(8px);
+                                    p{
+                                        @include m-b(0);
+                                        @include font-title(16px);
+                                    }
+                                    span{
+                                        @include m-t(0);
+                                        @include font-text(16px);
+                                        color: $gray-02;
+                                        display: block;
+                                    }
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-others-img:first-child{
+                                div:first-child{
+                                    background-image: url(../images/others-img-01.svg)
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-others-img:nth-child(2){
+                                div:first-child{
+                                    background-image: url(../images/others-img-02.svg)
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-others-img:nth-child(3){
+                                div:first-child{
+                                    background-image: url(../images/others-img-03.svg)
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-others-img:last-child{
+                                div:first-child{
+                                    background-image: url(../images/others-img-04.svg)
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-others-img:first-child{
+                                @include m-t(0);
+                            }
+                            .branding-popup-wrap-content-information-introduce-others-img:last-child{
+                                @include m-b(0);
+                            }
+                        }
+                    }
+                }
+                .branding-popup-wrap-content-title, .branding-popup-wrap-content-information{
+                    @include p-x(24px, 24px);
+                    @include p-y(24px, 24px);
+                }
+            }
+        }
+    }
+}
+//筆記型電腦
+@include desktop-m{
+    //owl-carousel客製化--------
+    //owl-carousel客製化 - 切換按鈕
+    .owl-nav{
+        button{
+            span{
+                @include m-x(4px, 4px);
+                @include font-title(16px);
+            }
+        }
+        button:last-child{
+            @include m-r(0);
+        }
+    }
+    //網頁內容--------
+    //網頁內容 - 內、外間距
+    .content-mx{
+        @include m-x(48px, 48px);
+    }
+    .content-my{
+        @include m-y(48px, 48px);
+    }
+    .content-px{
+        @include p-x(48px, 48px);
+    }
+    //網頁內容 - 區塊標題內間距
+    .section-content{
+        @include m-b(32px);
+    }
+    //網頁內容 - 區塊標題
+    .section-content-title{
+        @include font-title(32px);
+    }
+    //網頁內容 - 選單
+    //網頁內容 - 選單 - logo
+    $logo-h: 32px;
+    $logo-w: 168px;
+    .menu{
+        .menu-list{
+            .menu-list-logo{
+                li{
+                    h1{
+                        height: $logo-h;
+                        width: $logo-w;
+                        a{
+                            height: $logo-h;
+                            width: $logo-w;
+                        }
+                    }
+                }
+            }
+            .menu-list-l{
+                .menu-list-l-link, .menu-list-l-line{
+                    @include m-x(8px, 8px);
+                }
+            }
+        }
+    }
+    //網頁內容 - 熱門推薦
+    //客製化定義輪播切換按鈕向右間距
+    $owl-nav-right:48px;
+    .hots{
+        .hots-information{
+            .hots-information-banner{
+                .hots-information-banner-item{
+                    img{
+                        @include m-b(4px);
+                    }
+                }
+                .owl-nav{
+                    margin-right: $owl-nav-right;
+                }
+            }
+        }
+    }
+    //網頁內容 - 好康報報
+    //共用模組 = 品牌延伸
+    $brand-circle-h: 16px;
+    $brand-circle-w: 48px; 
+    .shops{
+        .shops-information{
+            .shops-information-list{
+                @include p-y(12px, 12px);
+            }
+        }
+    }
+    //網頁內容 - 服務介紹
+    //網頁內容 - 服務介紹標題圓形尺寸
+    $title-cirlce-size: 200px;
+    .service{
+        .service-information{
+            .service-information-list{
+                @include m-x(12px, 12px);
+                @include m-b(24px);
+                width: calc(33.3% - 16px);
+                .service-information-list-wrap{
+                    .service-information-list-wrap-title{
+                        h5{
+                            @include font-title(24px);
+                        }
+                        &:after{
+                            @include absolute(0, $title-cirlce-size*-0.5, 0, none, auto);
+                            height: $title-cirlce-size;
+                            width: $title-cirlce-size;
+                        }
+                    }
+                }
+            }
+            .service-information-list:first-child, .service-information-list:nth-child(4){
+                @include m-x(0, 12px);
+            }
+            .service-information-list:nth-child(3), .service-information-list:last-child{
+                @include m-x(12px, 0);
+            }
+        }
+    }
+    //網頁內容 - QA
+    .qa{
+        .qa-information{
+            .qa-information-list{
+                @include m-y(24px, 24px);
+                .qa-information-list-title{
+                    @include font-title(24px);
+                }
+                .qa-information-list-title, .qa-information-list-content{
+                    @include p-x(24px, 24px);
+                    @include p-y(24px, 24px);                    
+                }
+            }
+        }
+    }
+    //網頁內容 - 形象牆
+    //突出幾何形尺寸
+    $brand-others-size-h: 88px;
+    //形象牆裝置尺寸
+    $device-size-h: 520px;
+    $device-size-w: 440px;
+    //裝置內圓型尺寸
+    $device-circle-size:1200px;
+    //形象牆裝置圓角
+    $device-radius: 24px;
+    //形象牆圓形尺寸
+    $brand-bg-circle: 600px;
+    .brand{
+        .brand-wrap{
+            @include m-t($brand-others-size-h*1.5);
+            @include p-t(120px);
+            .brand-wrap-device{
+                height: $device-size-h;
+                width: $device-size-w;
+                .brand-wrap-device-inner{
+                    height: $device-size-h*0.98;
+                    width: $device-size-w*0.95;
+                    &:after{
+                        @include absolute(none, $device-circle-size*-0.5, 80px, $device-circle-size*-0.5, auto);
+                        height: $device-circle-size;
+                        width: $device-circle-size;
+                    }
+                }
+            }
+            .brand-wrap-circle{
+                .brand-wrap-circle-fill{
+                    height: $brand-bg-circle;
+                    width: $brand-bg-circle;
+                }
+                .brand-wrap-circle-border{
+                    height: $brand-bg-circle;
+                    width: $brand-bg-circle;
+                }
+            }
+            &:after{
+                @include absolute($brand-others-size-h/-2, 0, none, 0, auto);
+                height: $brand-others-size-h;
+                width: calc(100% - 48*2px);
+            }
+        }
+    }
+    //頁尾
+    footer{
+        @include p-y(32px, 32px);
+    }
+    //網頁內容 - 下載
+    //網頁內容 - 下載 - 返回頂端按鈕尺寸
+    $to-top-size: 56px;
+    .download{
+        @include p-y(16px, 16px);
+        .download-information{
+            h2{
+                @include font-title(32px);
+            }
+        }
+        .to-top{
+            height: $to-top-size;
+            width: $to-top-size;
+            &:after{
+                @include absolute(16px, 0, 0, 0, auto);
+                height: $to-top-size;
+                width: $to-top-size;
+            }
+        }
+    }
+    //網頁內容 - 新裝上陣
+    //LOGO外圍方形尺寸
+    $logotypeSize: 464px;
+    //概念圖形尺寸
+    $conceptHeightSize: 88px;
+    $conceptWidthSize: 160px;
+    .branding{
+        .branding-popup{
+            .branding-popup-wrap{
+                @include p-x(48px, 48px);
+                @include p-y(48px, 48px);
+            }
+        }
+    }
+}
+//平板--------
+@include pad-l{
+    //owl-carousel客製化--------
+    //owl-carousel客製化 - 切換按鈕
+    .owl-nav{
+        display: none;
+    }
+    //網頁內容--------
+    //網頁內容 - 內、外間距
+    .content-mx{
+        @include m-x(38px, 38px);
+    }
+    .content-my{
+        @include m-y(64px, 64px);
+    }
+    .content-px{
+        @include p-x(38px, 38px);
+    }
+    //網頁內容 - 區塊標題內間距
+    .section-content{
+        @include m-b(24px);
+    }
+    //網頁內容 - 區塊標題
+    .section-content-title{
+        @include font-title(32px);
+    }
+    //網頁內容 - 選單
+    //共用模組 - logo
+    $logo-h: 32px;
+    $logo-w: 132px;
+    .menu{
+        .menu-list{
+            .menu-list-logo{
+                li{
+                    h1{
+                        height: $logo-h;
+                        width: $logo-w;
+                        a{
+                            height: $logo-h;
+                            width: $logo-w;
+                        }
+                    }
+                }
+            }
+            .menu-list-l{
+                .menu-list-l-link, .menu-list-l-line{
+                    @include m-x(8px, 8px);
+                }
+            }
+        }
+    }
+    //網頁內容 - 最新消息
+    .news{
+        .news-content{
+            .news-content-banner{
+                .owl-nav{
+                    display: none;
+                }
+            }
+        }
+    }
+    //網頁內容 - 服務介紹
+    //網頁內容 - 服務介紹標題圓形尺寸
+    $title-cirlce-size: 200px;
+    .service{
+        .service-information{
+            .service-information-list{
+                width: calc(50% - 16px);
+                .service-information-list-wrap{
+                    .service-information-list-wrap-title{
+                        h5{
+                            @include font-title(24px);
+                        }
+                        &:after{
+                            @include absolute(0, $title-cirlce-size*-0.5, 0, none, auto);
+                            content: '';
+                            height: $title-cirlce-size;
+                            width: $title-cirlce-size;
+                        }
+                    }
+                }
+            }
+            .service-information-list:nth-child(even){
+                @include m-x(16px, 0);
+            }
+            .service-information-list:nth-child(odd){
+                @include m-x(0, 16px);
+            }
+        }
+    }
+    //網頁內容 - QA
+    .qa{
+        .qa-information{
+            .qa-information-list{
+                @include m-y(24px, 24px);
+                .qa-information-list-title{
+                    @include font-title(24px);
+                    align-items: flex-start;
+                    i{
+                        position: relative;
+                        top: 8px;
+                    }
+                }
+            }
+        }
+    }
+    //網頁內容 - 形象牆
+    //形象牆裝置尺寸
+    $device-size-h: 600px;
+    $device-size-w: 480px;
+    //形象牆圓形尺寸
+    $brand-bg-circle: 640px;
+    .brand{
+        .brand-wrap{
+            @include p-t(80px);
+            .brand-wrap-device{
+                height: $device-size-h;
+                width: $device-size-w;
+                .brand-wrap-device-inner{
+                    height: $device-size-h*0.98;
+                    width: $device-size-w*0.95;
+                }
+            }
+            .brand-wrap-circle{
+                .brand-wrap-circle-fill{
+                    height: $brand-bg-circle;
+                    width: $brand-bg-circle;
+                }
+                .brand-wrap-circle-border{
+                    height: $brand-bg-circle;
+                    width: $brand-bg-circle;
+                }
+            }
+            &:after{
+                width: calc(100% - 38*2px)
+            }
+        }
+    }
+    //頁尾
+    footer{
+        @include p-y(24px, 24px);
+        @include flex-col;
+        .footer-logo{
+            width: 100%;
+            text-align: left;
+        }
+        .footer-information{
+            @include m-x(24px, auto);
+            > div{
+                @include flex-row;
+                align-items: center;
+            }
+        }
+        .footer-copyright{
+            @include m-x(auto, 0);
+            align-self: unset;
+            div{
+                p{
+                    text-align: left;
+                }
+            }
+        }
+        .footer-logo, .footer-information, .footer-copyright{
+            @include m-x(0, 0);
+            @include m-y(12px, 12px);
+            width: 100%;
+        }
+        .footer-information, .footer-copyright{
+            div:first-child{
+                @include p-t(0);
+            }
+            div:last-child{
+                @include p-b(0);
+            }
+        }
+    }
+    //網頁內容 - 下載
+    //網頁內容 - 下載 - 返回頂端按鈕尺寸
+    $to-top-size:64px;
+    .download{
+        .download-information{
+            h2{
+                @include m-r(8px);
+                @include font-title(24px);
+            }
+            div{
+                @include m-x(8px ,8px);
+                a{
+                    @include m-x(8px, 8px);
+                    &:last-child{
+                        @include m-r(0);
+                    }
+                }
+                &:last-child{
+                    @include m-r(0);
+                }
+            }
+        }
+    }
+    //網頁內容 - 新裝上陣
+    //LOGO外圍方形尺寸
+    $logotypeSize: 360px;
+    //概念圖形尺寸
+    $conceptHeightSize: 120px;
+    $conceptWidthSize: 160px;
+    .branding{
+        .branding-popup{
+            .branding-popup-wrap{
+                .branding-popup-wrap-content{
+                    position: relative;
+                    .branding-popup-wrap-content-information{
+                        @include flex-col;
+                        height: 640px;
+                        overflow-y: auto;
+                        background-color: $white;
+                        .branding-popup-wrap-content-information-logotype{
+                            @include p-x(0, 0);
+                            @include m-b(24px);
+                            width: 100%;
+                            border-right: none;
+                            div{
+                                @include m-b(16px);
+                                height: $logotypeSize;
+                                width: 100%;
+                            } 
+                            p{
+                                @include m-t(16px);
+                                @include font-title(32px);
+                                text-align: center;
+                                color: $primary-01;
+                            } 
+                        }
+                        .branding-popup-wrap-content-information-introduce{
+                            @include p-x(0, 0);
+                            width: 100%;
+                            .branding-popup-wrap-content-information-introduce-concept{
+                                @include p-b(24px);
+                                .branding-popup-wrap-content-information-introduce-concept-img{
+                                    @include m-x(8px, 8px);
+                                    width: 33.3%;
+                                    div:first-child{
+                                        height: $conceptHeightSize;
+                                        width: $conceptWidthSize;
+                                    }
+                                }
+                                .branding-popup-wrap-content-information-introduce-concept-img:first-child{
+                                    @include m-x(0, 8px);
+                                }
+                                .branding-popup-wrap-content-information-introduce-concept-img:last-child{
+                                    @include m-x(8px, 0);
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-others{
+                                @include p-t(24px);
+                                .branding-popup-wrap-content-information-introduce-others-img{
+                                    div:first-child{
+                                        height: $conceptHeightSize;
+                                        width: $conceptWidthSize;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &:before{
+                        @include absolute(none, 0, 0, 0, auto);
+                        content: '';
+                        height: 10%;
+                        width: 100%;
+                        border-radius: $radius-01;
+                        background: linear-gradient(0deg, rgba($white, 1), rgba($white, 0));
+                    }
+                    &:after{
+                        @include absolute(none, 0, 16px, 0, auto);
+                        @include font-text(16px);
+                        content: '下向滑動，瀏覽更多內容';
+                        color: $gray-02;
+                        text-align: center;
+                    }
+                    &:before, &:after{
+                        @include linear(0.25s);
+                    }
+                }
+            }
+        }
+    }
+}
+//手機板--------
+@include phone-l{
+    //共用模組--------
+    //共用模組 - 陰影
+    $shadow-z-01: 0 2px 4px rgba(0, 0, 0, 0.16);
+    $shadow-z-01: 0 2px 4px rgba(0, 0, 0, 0.24);
+    //共用模組 - 品牌延伸
+    $brand-circle-inner: 320px;
+    $brand-circle-outer: 480px; 
+    //owl-carousel客製化--------
+    //owl-carousel客製化 - 序列控制點
+    .owl-dots{
+        @include m-t(8px);
+    }
+    //網頁內容--------
+    //網頁內容 - 內、外間距
+    .content-mx{
+        @include m-x(16px, 16px);
+    }
+    .content-px{
+        @include p-x(16px, 16px);
+    }
+    .content-my{
+        @include m-y(48px, 48px);
+    }
+    //網頁內容 - 區塊標題內間距
+    .section-content{
+        @include m-b(16px);
+    }
+    //網頁內容 - 區塊標題
+    .section-content-title{
+        @include font-title(24px);
+    }
+    //網頁內容 - 選單
+    ////共用模組 - logo
+    $logo-h: 24px;
+    $logo-w: 120px;
+    .menu{
+        .menu-list{
+            @include p-y(0px, 0px);
+            flex-wrap: wrap;
+            .menu-list-logo{
+                @include m-r(auto);
+                li{
+                    h1{
+                        height: $logo-h;
+                        width: $logo-w;
+                        a{
+                            height: $logo-h;
+                            width: $logo-w;
+                        }
+                    }
+                }
+            }
+            .menu-list-m{
+                @include m-l(auto);
+                @include flex-row;
+                align-items: center;
+                order: 1;
+                .menu-list-m-line{
+                    height: 100%;
+                    width: 1px;
+                    background-color: $gray-05;
+                }
+                .menu-list-m-link, .menu-list-m-line{
+                    @include m-x(4px, 4px);
+                }
+            }
+            .menu-list-l{
+                @include m-l(auto);
+                @include p-y(0, 0);
+                width: 100%;
+                order: 2;
+                border-top: 1px solid $gray-05;
+                display: none;
+                .menu-list-l-link{
+                    @include m-x(0, 0);
+                    @include p-y(0, 0);
+                    width: 100%;
+                    a{
+                        @include p-y(16px, 16px);
+                        width: 100%;
+                        display: block;
+                    }
+                }
+                .menu-list-l-line, .menu-list-l-link:last-child{
+                    display: none;
+                }
+            }
+            .menu-list-logo, .menu-list-m{
+                @include p-y(16px, 16px);
+            }
+        }
+    }
+    //網頁內容 - 主視覺
+    //網頁內容 - 主視覺
+    .branding-kv{
+        div{
+            background-color: $gray-06;
+        }
+        .branding-kv-l{
+            display: none;
+        }
+        .branding-kv-m{
+            display: block;
+        }
+    }
+    //網頁內容 - 最新活動
+    .news{
+        .news-information{
+            .news-information-banner{
+                .news-information-banner-item{
+                img{
+                    @include m-b(0);
+                    box-shadow: $shadow-z-01;
+                }
+                p{
+                    @include m-t(8px);
+                }
+            }
+        }
+            &:after{
+                @include absolute(0px, none, none, 0, none);
+                @include font-title(72px);
+            }
+        }
+    }
+    //網頁內容 - 熱門推薦
+    .hots{
+        .hots-content{
+            .hots-content-banner{
+                .hots-content-banner-item{
+                    img{
+                        @include m-b(0);
+                        box-shadow: $shadow-z-01;
+                    }
+                }   
+            }
+        }
+    }
+    //網頁內容 - 好康報報
+    //共用模組 - 品牌延伸
+    $brand-circle-h: 16px;
+    $brand-circle-w: 48px;
+    //品牌延伸動畫
+    .brand-circle-animation-default{
+        @include translate(0, 0);
+        opacity: 0;
+    }
+    .brand-circle-animation-active{
+        @include translate(24px, 0);
+        opacity: 1;
+    }
+    .shops{
+        .shops-content{
+            @include m-b(24px);
+            div{
+                span{
+                    height: $brand-circle-h;
+                    width: $brand-circle-w;
+                }
+                span:first-child{
+                    left: 0 - 24px;
+                    background-color: $primary-01;
+                    z-index: $z-01;
+                    transition-delay: 0s;
+                }
+                span:nth-child(2){
+                    left: 20px - 24px;
+                    background-color: $primary-02; 
+                    z-index: $z-b1;   
+                    transition-delay: 0.25s;
+                }
+                span:last-child{
+                    left: 32px - 24px;
+                    background-color: $secondary-01;
+                    z-index: $z-b2;
+                    transition-delay: 0.5s;
+                }
+            }
+        }
+        .shops-information{
+            .shops-information-list{
+                @include p-y(16px, 16px);
+                .shops-information-list-wrap{
+                    .shops-information-list-wrap-data{
+                        @include m-x(16px, 16px);
+                        @include p-y(12px, 12px);
+                        div{
+                            @include m-r(8px);
+                        }
+                        p{
+                            @include m-x(8px, auto);
+                            @include font-title(16px);
+                        }
+                        a{
+                            display: none;
+                        }
+                    }
+                    .shops-information-list-wrap-event{
+                        @include p-y(12px, 6px);
+                    }
+                    .shops-information-list-wrap-other{
+                        @include p-y(6px, 12px);
+                        .shops-information-list-wrap-other-time, .shops-information-list-wrap-other-information{
+                            @include flex-col;
+                            span{
+                                @include m-b(4px);
+                            }
+                            p, article{
+                                @include m-t(4px);
+                            }
+                        }
+                    }
+                    .shops-information-list-wrap-more{
+                        @include m-x(16px, 16px);
+                        @include p-y(16px, 16px);
+                        display: block;
+                        text-align: center;
+                        border-top: 1px solid $gray-05;
+                        a{
+                            width: 100%;
+                            display: block;
+                        }
+                    }
+                    .shops-information-list-wrap-event, .shops-information-list-wrap-other{
+                        @include m-x(16px, 16px);
+                    }
+                }
+            }
+        }
+        .section-circle{
+            @include absolute(0, $brand-circle-outer/-2, none, none, auto);
+            height: $brand-circle-outer;
+            width: $brand-circle-outer;
+            background:linear-gradient(0deg, $white, $primary-01);
+            &:after{
+                height: $brand-circle-inner;
+                width: $brand-circle-inner;
+            }
+        }
+    }
+    //網頁內容 - 服務介紹
+    //網頁內容 - 服務介紹標題圓形尺寸
+    $title-cirlce-size: 240px;
+    .service{
+        .service-information{
+            @include flex-col;
+            .service-information-list{
+                @include m-x(0, 0);
+                width: 100%;
+                .service-information-list-wrap{
+                    .service-information-list-wrap-title{
+                        h5{
+                            @include font-text(16px ,1px);
+                        }
+                    }
+                }
+            }
+            .service-information-list:nth-child(even), .service-information-list:nth-child(odd){
+                @include m-x(0, 0);
+            }
+        }
+    }
+    //網頁內容 - QA
+    .qa{
+        .qa-information{
+            .qa-information-list{
+                .qa-information-list-title{
+                    @include font-text(16px);
+                    align-items: flex-start;
+                    i{
+                        position: relative;
+                        top: 0px;
+                    }
+                }
+            }
+        }
+    }
+    //網頁內容 - 形象牆
+    //突出幾何形尺寸
+    $brand-others-size-h: 64px;
+    $brand-others-size-w: calc(100% - 32px);
+    //形象牆裝置尺寸
+    $device-size-h: 320px;
+    $device-size-w: 240px;
+    //裝置內圓型尺寸
+    $device-circle-size:1000px;
+    //形象牆裝置圓角
+    $device-radius: 24px;
+    //形象牆圓形尺寸
+    $brand-bg-circle: 320px;
+    .brand{
+        .brand-wrap{
+            @include m-t($brand-others-size-h*1.5);
+            @include p-t(36px);
+            .brand-wrap-device{
+                height: $device-size-h;
+                width: $device-size-w;
+                .brand-wrap-device-inner{
+                    height: $device-size-h*0.98;
+                    width: $device-size-w*0.95;
+                    .brand-wrap-device-inner-vision{
+                        div{
+                            background-size: 80px
+                        }
+                    }
+                    &:after{
+                        @include absolute(none, $device-circle-size*-0.5, 64px, $device-circle-size*-0.5, auto);
+                        height: $device-circle-size;
+                        width: $device-circle-size;
+                    }
+                }
+            }
+            .brand-wrap-circle{
+                .brand-wrap-circle-fill{
+                    height: $brand-bg-circle;
+                    width: $brand-bg-circle;
+                }
+                .brand-wrap-circle-border{
+                    height: $brand-bg-circle;
+                    width: $brand-bg-circle;
+                }
+            }
+            &:after{
+                @include absolute($brand-others-size-h/-2, 0, none, 0, auto);
+                height: $brand-others-size-h;
+                width: $brand-others-size-w;
+            }
+        }
+    }
+    //頁尾
+    footer{
+        @include p-y(24px, 24px);
+        @include flex-col;
+        .footer-logo{
+            text-align: center;
+            img{
+                width: 160px;
+            }
+        }
+        .footer-logo, .footer-information, .footer-copyright{
+            @include m-x(0, 0);
+            @include m-y(12px, 12px);
+            width: 100%;
+        }
+        .footer-information, .footer-copyright{
+            div{
+                @include p-y(4px, 4px);
+            }
+            div:first-child{
+                @include p-t(0);
+            }
+            div:last-child{
+                @include p-b(0);
+            }
+        }
+    }
+    //top-按鈕
+    .screen-to-top{
+        @include flex-row;
+        @include linear(0.5s);
+        @include fixed(none, 16px, 64px, none, auto);
+        height: 44px;
+        width: 44px;
+        background-color: $white;
+        box-shadow: $shadow-z-01;
+        border-radius: $border-circle;
+        z-index: $z-02;
+        opacity: 0.64;
+        i{
+            @include m-x(auto, auto);
+            @include m-y(auto, auto);
+            color: $primary-01;
+            font-size: 24px;
+            display: block;
+        }
+    }
+    //網頁內容 - 下載
+    //網頁內容 - 下載 - 返回頂端按鈕尺寸
+    $to-top-size:64px;
+    .download{
+        .download-information{
+            @include flex-col;
+            h2{
+                @include m-x(0, 0);
+                @include m-b(16px);
+                @include font-title(24px);
+            }
+            .download-information-line{
+                display: none;
+            }
+            .download-information-link{
+                @include m-x(0px ,0px);
+                width: 100%;
+                text-align: center;
+                a{
+                    @include m-x(8px, 8px);
+                    width: calc(100% - 8px);
+                    &:first-child{
+                        @include m-l(0);
+                    }
+                    &:last-child{
+                        @include m-r(0);
+                    }
+                }
+            }
+        }
+        .to-top{
+            @include absolute($to-top-size/-2, 0, none, 0, auto);
+        }
+    }
+    //一鍵下載按鈕
+    .download-l{
+        display: none;
+    }
+    //網頁內容 - 新裝上陣
+    //LOGO外圍方形尺寸
+    $logotypeSize: 200px;
+    //概念圖形尺寸
+    $conceptHeightSize: 88px;
+    $conceptWidthSize: 88px;
+    .branding{
+        .branding-popup{
+            .branding-popup-wrap{
+                @include p-x(24px, 24px);
+                @include p-y(24px, 24px);
+                .branding-popup-wrap-content{
+                    .branding-popup-wrap-content-information{
+                        @include flex-col;
+                        height: 440px;
+                        .branding-popup-wrap-content-information-logotype{
+                            @include p-x(0, 0);
+                            width: 100%;
+                            div{
+                                @include m-b(16px);
+                                height: $logotypeSize;
+                                width: 100%;
+                                background-size: 80px;
+                            } 
+                            p{
+                                @include m-t(16px);
+                                @include font-title(24px);
+                            } 
+                        }
+                        .branding-popup-wrap-content-information-introduce{
+                            @include p-x(0, 0);
+                            width: 100%;
+                            .branding-popup-wrap-content-information-introduce-concept{
+                                @include p-b(24px);
+                                @include flex-col;
+                                .branding-popup-wrap-content-information-introduce-concept-img{
+                                    @include m-x(0, 0);
+                                    @include m-y(8px, 8px);
+                                    @include flex-row;
+                                    width: 100%;
+                                    align-items: center;
+                                    div:first-child{
+                                        @include m-b(0);
+                                        @include m-r(8px);
+                                        height: $conceptHeightSize;
+                                        min-height: $conceptHeightSize;
+                                        width: $conceptWidthSize;
+                                        min-width: $conceptWidthSize;
+                                    }
+                                    div:last-child{
+                                        @include m-t(0);
+                                        @include m-l(8px);
+                                        p:first-child{
+                                            @include m-t(0);
+                                        }
+                                    }
+                                }
+                                .branding-popup-wrap-content-information-introduce-concept-img:first-child{
+                                    @include m-t(0);
+                                }
+                                .branding-popup-wrap-content-information-introduce-concept-img:last-child{
+                                    @include m-b(0);
+                                }
+                                .branding-popup-wrap-content-information-introduce-concept-img:first-child, .branding-popup-wrap-content-information-introduce-concept-img:last-child{
+                                    @include m-x(0, 0);
+                                }
+                            }
+                            .branding-popup-wrap-content-information-introduce-others{
+                                @include p-t(24px);
+                                .branding-popup-wrap-content-information-introduce-others-img{
+                                    > div:first-child{
+                                        height: $conceptHeightSize;
+                                        min-height: $conceptHeightSize;
+                                        width: $conceptWidthSize;
+                                        min-width: $conceptWidthSize;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

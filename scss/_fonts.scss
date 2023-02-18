@@ -1,0 +1,45 @@
+//雲端字體，英數/中文--------
+//英數
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+//中文
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+//字體設定--------
+*{
+    font-family: 'Noto Sans TC', sans-serif;
+    color: $black;
+}
+
+//字級/字距--------
+//內文
+@mixin font-text($size: 16px, $spacing: $size*0.05){
+    font-size: $size;
+    line-height: $size*1.5;
+    letter-spacing: $spacing;
+    font-weight: normal;
+}
+//標題
+@mixin font-title($size: 16px, $spacing: $size*0.05){
+    font-size: $size;
+    line-height: $size*1.5;
+    letter-spacing: $spacing;
+    font-weight: bold;
+}
+
+//文字行數--------
+//文字行數-單行顯示
+@mixin text-limted {
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+//文字行數-多行顯示
+@mixin text-limted-rows($rows) {
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $rows;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
